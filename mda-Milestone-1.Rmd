@@ -45,7 +45,7 @@ The research question I would ask for the steam_games dataset would be - Are the
 I've decided to work with the cancer_sample dataset for the remainder of this milestone
 
 # Task 2
-### Task 2.1
+### Task 2.1/2.2
 ##### 2.1.1
 `````{r}
 #selects cancer_sample dataset and produces a graph with area_mean on the x-axis and perimeter_mean on the y-axis.
@@ -58,6 +58,8 @@ cancer_sample %>%
   scale_x_continuous(expand = c(0, 0), limits = c(0, 2600)) + 
   scale_y_continuous(expand = c(0, 0), limits = c(0, 200))
 `````
+I decided to do this exercise because it would be a great way to visually see any relationships that may exist between two different variables. In this case I looked at the mean area and mean perimeter of the tumors. As you can see in the graph, there appears to be a positive relationship between these two variables. I also added an aesthetic function to see the distribution of thes points in regards to the diagnoses of these tumors. Both diagnoses appear to share this positive relationship between tumor area and perimeter. Additionally, benign tumors appear to typically be smaller in area and perimeter.
+
 ##### 2.1.6
 `````{r}
 #selects cancer_sample dataset and produces a graph with diagnosis on the x-axis and compactness_mean on the y-axis.
@@ -68,11 +70,15 @@ cancer_sample %>%
 #adds the individuals data points, makes the points' transparency lower and smaller, and shifts the points horizontally while keeping the vertical position the same.
   geom_point(alpha = 0.2, size = 0.2, position = position_dodge2(w = 0.25))
 `````
+I decided to do this exercise because it would allow for determining a potential relationship between either diagnosis with any variable. In this case it is comparing the compactness of the tumors between benign and malignant tumors. This graph clearly shows that malignant tumors tend to have a higher compactness than benign tumors, as seen by the median for the malignant tumor boxplot being relatively higher. Also, the absence of overlap between quartile 1 and 3 from the malignant tumor boxplot with quartile 1 and 3 from the benign tumor boxplot show some potentially significant result.
+
 ##### 2.1.7
 `````{r}
 #selects all variables from ID to fractal_dimension_mean and produces a new tibble including only this information.
 select(cancer_sample, ID:fractal_dimension_mean)
 `````
+I chose this exercise because for this milestone I only wanted to focus on the mean values of these variable, along with keeping ID information and the diagnosis of each tumor. 
+
 ##### 2.1.8
 `````{r}
 #selects cancer_sample dataset and produces a graph with area_mean on the x_axis.
@@ -85,7 +91,6 @@ cancer_sample %>%
 #relablled y-axis from y, to density
   ylab(label = "density")
 `````
-
-### Task 2.2
+I chose this exercise because I wanted to further look at potential differences between the two possible diagnoses (not including the signal NA diagnosis). This graphs helps to visually see the relationship between the area of tumors between benign and malignant diagnoses. It appears that malignant tumors have a larger range of area values, whereas benign tumors seem to be within a smaller range. Additionally, malignant tumors appear to usually take up a larger area.
 
 # Task 3

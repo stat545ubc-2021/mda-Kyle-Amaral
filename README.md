@@ -9,7 +9,7 @@ This is a Mini-Data Analysis for STAT 545A, specifically the first Milestone of 
 - To produce an R markdown file that can be reproduced and that is clear
 
 #### What files are in the Project Folder/Repository
-Within "mda-Kyle-Amaral" you will find 6 files: README.md, .gitignore, mda-Kyle-Amaral.Rproj, mda-Milestone-1.Rmd, and mda-Milestone-1.md
+Within "mda-Kyle-Amaral" you will find 6 files: README.md, .gitignore, mda-Kyle-Amaral.Rproj, mda-Milestone-1.Rmd, mda-Milestone-1.md, and mda-Milestone-1_files/figure-gfm
 
 ##### Repository 
 - README.md contains a thorough description on the content that can be found in this repository. The README.md file can also be used to produce a PDF or html

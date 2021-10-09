@@ -4,10 +4,10 @@ output: github_document
 ---
 
 `````{r}
-#loads needed packages to execute the code in this file
-library(datateachr) #allows for access to the datasets in this file
-library(ggplot2) #used for visualization
-library(dplyr) #used for data manipulation 
+#loads needed packages to execute the code in this file and supresses startup messages
+suppressPackageStartupMessages(library(datateachr)) #allows for access to the datasets in this file.
+suppressPackageStartupMessages(library(tidyverse)) # loads packages needed for data visualization (ggplot2), and data manipulation (dplyr) that were used in this file.
+
 `````
 
 # Task 1
@@ -21,20 +21,24 @@ library(dplyr) #used for data manipulation
 `````{r}
 #Exploring datasets of interest. For each dataset the below code provides class type, number of rows, number of columns, variable names, and provides information on how data is provided (ie. numeric or characters). 
 
-#cancer_sample
+#cancer_sample class type
 class(cancer_sample) 
+#cancer_sample information on rows, columns, variable, and details on type of data (numeric or characters)
 glimpse(cancer_sample) 
 
-#parking_meters
+#parking_meters class type
 class(parking_meters) 
+#parking_meters information on rows, columns, variable, and details on type of data (numeric or characters)
 glimpse(parking_meters)
 
-#steam_games
+#steam_games class type
 class(steam_games) 
+#steam_games information on rows, columns, variable, and details on type of data (numeric or characters)
 glimpse(steam_games)
 
-#vancouver_trees
+#vancouver_trees class type
 class(vancouver_trees) 
+#vancouver_trees information on rows, columns, variable, and details on type of data (numeric or characters)
 glimpse(vancouver_trees)
 `````
 
@@ -45,13 +49,15 @@ glimpse(vancouver_trees)
 I selected these two datasets because they contain many variables that I believe could be used to figure out some interesting information. They both provide a relatively large number of variables, so many different graphs can be made to visualize potential relations or trends. For example, when looking at the cancer_sample dataset, it would be interesting to see if there are any correlations between different traits of the tumor (ie.mean tumor compactness and mean tumor area). This could be done by creating a scatter plot and adding a trendline. In terms of the steam_games dataset, it could be interesting to see if the genre of a game is related to the sale price, or if there is any relationship between genre and mature content. 
 
 ### Task 1.4
-The research question I would ask for the cancer_sample dataset would be:
+The research question I would ask for the *cancer_sample* dataset would be:
+
 - Are there any correlations that can be found between the different traits of a tumor, and do these traits relate to the diagnosis? 
 
-The research question I would ask for the steam_games dataset would be:
+The research question I would ask for the *steam_games* dataset would be:
+
 - Are there any correlations between the maturity rating and genre?
 
-I've decided to work with the cancer_sample dataset for the remainder of this milestone
+I've decided to work with the **cancer_sample** dataset for the remainder of this milestone/project.
 
 # Task 2
 ### Task 2.1/2.2

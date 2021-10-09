@@ -2,21 +2,10 @@ MDA-Milestone-1
 ================
 
 ``` r
-library(datateachr)
-library(ggplot2)
-library(dplyr)
+#loads needed packages to execute the code in this file and supresses startup messages
+suppressPackageStartupMessages(library(datateachr)) #allows for access to the datasets in this file.
+suppressPackageStartupMessages(library(tidyverse)) # loads packages needed for data visualization (ggplot2), and data manipulation (dplyr) that were used in this file.
 ```
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
 
 # Task 1
 
@@ -30,16 +19,17 @@ library(dplyr)
 ### Task 1.2
 
 ``` r
-#Exploring datasets of interest. For each dataset, the below code provides class type, number of rows, number of columns, variable names, and provides information on how data is provided (ie. numeric or characters)
+#Exploring datasets of interest. For each dataset the below code provides class type, number of rows, number of columns, variable names, and provides information on how data is provided (ie. numeric or characters). 
 
-#cancer_sample
-class(cancer_sample)
+#cancer_sample class type
+class(cancer_sample) 
 ```
 
     ## [1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame"
 
 ``` r
-glimpse(cancer_sample)
+#cancer_sample information on rows, columns, variable, and details on type of data (numeric or characters)
+glimpse(cancer_sample) 
 ```
 
     ## Rows: 569
@@ -78,13 +68,14 @@ glimpse(cancer_sample)
     ## $ fractal_dimension_worst <dbl> 0.11890, 0.08902, 0.08758, 0.17300, 0.07678, 0…
 
 ``` r
-#parking_meters
-class(parking_meters)
+#parking_meters class type
+class(parking_meters) 
 ```
 
     ## [1] "tbl_df"     "tbl"        "data.frame"
 
 ``` r
+#parking_meters information on rows, columns, variable, and details on type of data (numeric or characters)
 glimpse(parking_meters)
 ```
 
@@ -114,13 +105,14 @@ glimpse(parking_meters)
     ## $ meter_id       <chr> "670805", "471405", "C80145", "D03704", "301023", "5913…
 
 ``` r
-#steam_games
-class(steam_games)
+#steam_games class type
+class(steam_games) 
 ```
 
     ## [1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame"
 
 ``` r
+#steam_games information on rows, columns, variable, and details on type of data (numeric or characters)
 glimpse(steam_games)
 ```
 
@@ -149,13 +141,14 @@ glimpse(steam_games)
     ## $ discount_price           <dbl> 14.99, NA, NA, NA, NA, 35.18, 70.42, 17.58, N…
 
 ``` r
-#vancouver_trees
-class(vancouver_trees)
+#vancouver_trees class type
+class(vancouver_trees) 
 ```
 
     ## [1] "tbl_df"     "tbl"        "data.frame"
 
 ``` r
+#vancouver_trees information on rows, columns, variable, and details on type of data (numeric or characters)
 glimpse(vancouver_trees)
 ```
 
@@ -196,20 +189,24 @@ interesting to see if there are any correlations between different
 traits of the tumor (ie.mean tumor compactness and mean tumor area).
 This could be done by creating a scatter plot and adding a trendline. In
 terms of the steam\_games dataset, it could be interesting to see if the
-genre of a game is related to the sale price, or if theres any
+genre of a game is related to the sale price, or if there is any
 relationship between genre and mature content.
 
 ### Task 1.4
 
-The research question I would ask for the cancer\_sample dataset would
-be - Are there any correlations that can be found between the different
-traits of a tumor, and do these traits relate to the diagnosis?
+The research question I would ask for the *cancer\_sample* dataset would
+be:
 
-The research question I would ask for the steam\_games dataset would be
-- Are there any correlations between the maturity rating and genre?
+-   Are there any correlations that can be found between the different
+    traits of a tumor, and do these traits relate to the diagnosis?
 
-I’ve decided to work with the cancer\_sample dataset for the remainder
-of this milestone
+The research question I would ask for the *steam\_games* dataset would
+be:
+
+-   Are there any correlations between the maturity rating and genre?
+
+I’ve decided to work with the **cancer\_sample** dataset for the
+remainder of this milestone
 
 # Task 2
 
@@ -221,24 +218,27 @@ of this milestone
 #selects cancer_sample dataset and produces a graph with area_mean on the x-axis and perimeter_mean on the y-axis.
 cancer_sample %>%
   ggplot(aes(area_mean,perimeter_mean)) +
+  
 #plots the points for the above two vaiables, along with added a colour to the points to differentiate between the diagnosis of the tumor. An alpha of 0.2 was used to be able to see areas of overlap.
   geom_point(aes(colour=diagnosis), alpha=0.2) +
+  
 #sets the origin of the graph to 0,0 and ensures all points are included in the plot.
   expand_limits(x = 0, y = 0) +
   scale_x_continuous(expand = c(0, 0), limits = c(0, max(cancer_sample$area_mean)+100)) + 
   scale_y_continuous(expand = c(0, 0), limits = c(0, max(cancer_sample$perimeter_mean)+10))
 ```
 
-![](mda-Milestone-1_files/figure-gfm/unnamed-chunk-3-1.png)<!-- --> I
-decided to do this exercise because it would be a great way to visually
-see any relationships that may exist between two different variables. In
-this case I looked at the mean area and mean perimeter of the tumors. As
-you can see in the graph, there appears to be a positive relationship
-between these two variables. I also added an aesthetic function to see
-the distribution of thes points in regards to the diagnoses of these
-tumors. Both diagnoses appear to share this positive relationship
-between tumor area and perimeter. Additionally, benign tumors appear to
-typically be smaller in area and perimeter.
+![](mda-Milestone-1_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+I decided to do this exercise because it would be a great way to
+visually see any relationships that may exist between two different
+variables. In this case I looked at the mean area and mean perimeter of
+the tumors. As you can see in the graph, there appears to be a positive
+relationship between these two variables. I also added an aesthetic
+function to see the distribution of thes points in regards to the
+diagnoses of these tumors. Both diagnoses appear to share this positive
+relationship between tumor area and perimeter. Additionally, benign
+tumors appear to typically be smaller in area and perimeter.
 
 ##### 2.1.6
 
@@ -251,11 +251,12 @@ cancer_sample %>%
   geom_boxplot(width = 0.5) +
   
 #adds the individuals data points, makes the points' transparency lower and smaller, and shifts the points horizontally while keeping the vertical position the same.
-  geom_point(alpha = 0.2, size = 0.2, position = position_dodge2(w = 0.25))
+  geom_jitter(width = 0.2, size = 0.3, alpha = 0.2)
 ```
 
-![](mda-Milestone-1_files/figure-gfm/unnamed-chunk-4-1.png)<!-- --> I
-decided to do this exercise because it would allow for determining a
+![](mda-Milestone-1_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+I decided to do this exercise because it would allow for determining a
 potential relationship between either diagnosis with any variable. In
 this case it is comparing the compactness of the tumors between benign
 and malignant tumors. This graph clearly shows that malignant tumors
@@ -303,12 +304,13 @@ cancer_sample %>%
   geom_density(aes(fill = diagnosis), alpha = 0.3) +
 #set origin of graph to 0,0
   expand_limits(x = 0, y = 0) +
-#relablled y-axis from y, to density
+#relablled y-axis from y, to density.
   ylab(label = "density")
 ```
 
-![](mda-Milestone-1_files/figure-gfm/unnamed-chunk-6-1.png)<!-- --> I
-chose this exercise because I wanted to further look at potential
+![](mda-Milestone-1_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+I chose this exercise because I wanted to further look at potential
 differences between the two possible diagnoses (not including the signal
 NA diagnosis). This graphs helps to visually see the relationship
 between the area of tumors between benign and malignant diagnoses. It
@@ -317,3 +319,20 @@ whereas benign tumors seem to be within a smaller range. Additionally,
 malignant tumors appear to usually take up a larger area.
 
 # Task 3
+
+### 4 Research Questions:
+
+1.  What relationship exists (if any) between the symmetry of a tumor
+    and texture of a tumor?
+2.  What is the relationship between tumor diagnosis and tumor
+    variables?
+3.  Is there a relationship between the area and perimeter of a tumor in
+    regards to tumor diagnosis?
+4.  Is there a relationship between the tumor’s fractal dimension and
+    compactness?
+
+### Additional Comments
+
+I would require more information on the dataset. Such as what measuring
+units are the variable using. Also, what do the variables ending in
+’\_se’ and ’\_worst’ mean?

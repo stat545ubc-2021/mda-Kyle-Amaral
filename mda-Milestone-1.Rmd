@@ -3,6 +3,13 @@ title: "MDA-Milestone-1"
 output: github_document
 ---
 
+`````{r}
+#loads needed packages to execute the code in this file
+library(datateachr)
+library(ggplot2)
+library(dplyr)
+`````
+
 # Task 1
 ### Task 1.1
 1. cancer_sample
@@ -35,12 +42,14 @@ glimpse(vancouver_trees)
 1. cancer_sample
 2. steam_games
 
-I selected these two datasets because they contain many variables that I believe could be used to figure out some interesting information. They both provide a relatively large number of variables, so many different graphs can be made to visualize potential relations or trends. For example, when looking at the cancer_sample dataset, it would be interesting to see if there are any correlations between different traits of the tumor (ie.mean tumor compactness and mean tumor area). This could be done by creating a scatter plot and adding a trendline. In terms of the steam_games dataset, it could be interesting to see if the genre of a game is related to the sale price, or if theres any relationship between genre and mature content. 
+I selected these two datasets because they contain many variables that I believe could be used to figure out some interesting information. They both provide a relatively large number of variables, so many different graphs can be made to visualize potential relations or trends. For example, when looking at the cancer_sample dataset, it would be interesting to see if there are any correlations between different traits of the tumor (ie.mean tumor compactness and mean tumor area). This could be done by creating a scatter plot and adding a trendline. In terms of the steam_games dataset, it could be interesting to see if the genre of a game is related to the sale price, or if there is any relationship between genre and mature content. 
 
 ### Task 1.4
-The research question I would ask for the cancer_sample dataset would be - Are there any correlations that can be found between the different traits of a tumor, and do these traits relate to the diagnosis? 
+The research question I would ask for the cancer_sample dataset would be:
+- Are there any correlations that can be found between the different traits of a tumor, and do these traits relate to the diagnosis? 
 
-The research question I would ask for the steam_games dataset would be - Are there any correlations between the maturity rating and genre?
+The research question I would ask for the steam_games dataset would be:
+- Are there any correlations between the maturity rating and genre?
 
 I've decided to work with the cancer_sample dataset for the remainder of this milestone
 
@@ -51,13 +60,16 @@ I've decided to work with the cancer_sample dataset for the remainder of this mi
 #selects cancer_sample dataset and produces a graph with area_mean on the x-axis and perimeter_mean on the y-axis.
 cancer_sample %>%
   ggplot(aes(area_mean,perimeter_mean)) +
+  
 #plots the points for the above two vaiables, along with added a colour to the points to differentiate between the diagnosis of the tumor. An alpha of 0.2 was used to be able to see areas of overlap.
   geom_point(aes(colour=diagnosis), alpha=0.2) +
+  
 #sets the origin of the graph to 0,0 and ensures all points are included in the plot.
   expand_limits(x = 0, y = 0) +
-  scale_x_continuous(expand = c(0, 0), limits = c(0, 2600)) + 
-  scale_y_continuous(expand = c(0, 0), limits = c(0, 200))
+  scale_x_continuous(expand = c(0, 0), limits = c(0, max(cancer_sample$area_mean)+100)) + 
+  scale_y_continuous(expand = c(0, 0), limits = c(0, max(cancer_sample$perimeter_mean)+10))
 `````
+
 I decided to do this exercise because it would be a great way to visually see any relationships that may exist between two different variables. In this case I looked at the mean area and mean perimeter of the tumors. As you can see in the graph, there appears to be a positive relationship between these two variables. I also added an aesthetic function to see the distribution of thes points in regards to the diagnoses of these tumors. Both diagnoses appear to share this positive relationship between tumor area and perimeter. Additionally, benign tumors appear to typically be smaller in area and perimeter.
 
 ##### 2.1.6
@@ -65,11 +77,14 @@ I decided to do this exercise because it would be a great way to visually see an
 #selects cancer_sample dataset and produces a graph with diagnosis on the x-axis and compactness_mean on the y-axis.
 cancer_sample %>%
   ggplot(aes(diagnosis,compactness_mean)) +
+  
 #produces a boxplot and makes the width of the boxplot smaller.
   geom_boxplot(width = 0.5) +
+  
 #adds the individuals data points, makes the points' transparency lower and smaller, and shifts the points horizontally while keeping the vertical position the same.
-  geom_point(alpha = 0.2, size = 0.2, position = position_dodge2(w = 0.25))
+  geom_jitter(width = 0.2, size = 0.3, alpha = 0.2)
 `````
+
 I decided to do this exercise because it would allow for determining a potential relationship between either diagnosis with any variable. In this case it is comparing the compactness of the tumors between benign and malignant tumors. This graph clearly shows that malignant tumors tend to have a higher compactness than benign tumors, as seen by the median for the malignant tumor boxplot being relatively higher. Also, the absence of overlap between quartile 1 and 3 from the malignant tumor boxplot with quartile 1 and 3 from the benign tumor boxplot show some potentially significant result.
 
 ##### 2.1.7
@@ -77,6 +92,7 @@ I decided to do this exercise because it would allow for determining a potential
 #selects all variables from ID to fractal_dimension_mean and produces a new tibble including only this information.
 select(cancer_sample, ID:fractal_dimension_mean)
 `````
+
 I chose this exercise because for this milestone I only wanted to focus on the mean values of these variable, along with keeping ID information and the diagnosis of each tumor. 
 
 ##### 2.1.8
@@ -88,9 +104,19 @@ cancer_sample %>%
   geom_density(aes(fill = diagnosis), alpha = 0.3) +
 #set origin of graph to 0,0
   expand_limits(x = 0, y = 0) +
-#relablled y-axis from y, to density
+#relablled y-axis from y, to density.
   ylab(label = "density")
 `````
+
 I chose this exercise because I wanted to further look at potential differences between the two possible diagnoses (not including the signal NA diagnosis). This graphs helps to visually see the relationship between the area of tumors between benign and malignant diagnoses. It appears that malignant tumors have a larger range of area values, whereas benign tumors seem to be within a smaller range. Additionally, malignant tumors appear to usually take up a larger area.
 
 # Task 3
+### 4 Research Questions:
+1. What relationship exists (if any) between the symmetry of a tumor and texture of a tumor?
+2. What is the relationship between tumor diagnosis and tumor variables?
+3. Is there a relationship between the area and perimeter of a tumor in regards to tumor diagnosis?
+4. Is there a relationship between the tumor's fractal dimension and compactness?
+
+### Additional Comments
+I would require more information on the dataset. Such as what measuring units are the variable using. Also, what do the variables ending in '_se' and '_worst' mean?
+

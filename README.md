@@ -18,10 +18,11 @@ Within "mda-Kyle-Amaral" you will find 5 files: README.md, .gitignore, mda-Kyle-
 
 - mda-Kyle-Amaral.Rproj contains project options and can also be used as a shortcut for opening the project directly from the file system 
 
-##### Milestone 1 Folder
 - mda-Milestone-1.Rmd is an R markdown file that was created to contain answers to Mini-Data Analysis Milestone 1. This file also includes code chunks that were used to perform some data manipulation and data visualization
 
 - mda-Milestone-1.md is the file that was rendered from knitting mda-Milestone-1.Rmd to a github-document file.
+
+- mda-Milestone-1_files/figure-gfm is a folder that contains three files that are necessary to be able to see the three graphs produced from the mda-Milestone-1.Rmd in the mda-Milestone-1.md file
 
 #### How to run the code in the folder
 Open Rstudio and start a new project. Link this new project to the mda-Kyle-Amaral repository on github by copying the url that can be found in the repository on github to the Rstudio window that opens. Pull the files and run code by highlighting the desired code and clicking run. 

@@ -5,9 +5,9 @@ output: github_document
 
 `````{r}
 #loads needed packages to execute the code in this file
-library(datateachr)
-library(ggplot2)
-library(dplyr)
+library(datateachr) #allows for access to the datasets in this file
+library(ggplot2) #used for visualization
+library(dplyr) #used for data manipulation 
 `````
 
 # Task 1
@@ -19,22 +19,22 @@ library(dplyr)
 
 ### Task 1.2
 `````{r}
-#Exploring datasets of interest. For each dataset, the below code provides class type, number of rows, number of columns, variable names, and provides information on how data is provided (ie. numeric or characters)
+#Exploring datasets of interest. For each dataset the below code provides class type, number of rows, number of columns, variable names, and provides information on how data is provided (ie. numeric or characters). 
 
 #cancer_sample
-class(cancer_sample)
-glimpse(cancer_sample)
+class(cancer_sample) 
+glimpse(cancer_sample) 
 
 #parking_meters
-class(parking_meters)
+class(parking_meters) 
 glimpse(parking_meters)
 
 #steam_games
-class(steam_games)
+class(steam_games) 
 glimpse(steam_games)
 
 #vancouver_trees
-class(vancouver_trees)
+class(vancouver_trees) 
 glimpse(vancouver_trees)
 `````
 
@@ -119,4 +119,3 @@ I chose this exercise because I wanted to further look at potential differences 
 
 ### Additional Comments
 I would require more information on the dataset. Such as what measuring units are the variable using. Also, what do the variables ending in '_se' and '_worst' mean?
-

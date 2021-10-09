@@ -206,7 +206,7 @@ be:
 -   Are there any correlations between the maturity rating and genre?
 
 I’ve decided to work with the **cancer\_sample** dataset for the
-remainder of this milestone
+remainder of this milestone/project.
 
 # Task 2
 

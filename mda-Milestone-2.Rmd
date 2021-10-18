@@ -2,3 +2,92 @@
 title: "mda-Milestone-2"
 output: html_document
 ---
+
+`````{r}
+#loads needed packages to execute the code in this file and supresses startup messages
+suppressPackageStartupMessages(library(datateachr)) #allows for access to the datasets in this file.
+suppressPackageStartupMessages(library(tidyverse)) # loads packages needed for data visualization (ggplot2), and data manipulation (dplyr) that were used in this file.
+`````
+
+# Task 1
+### Task 1.1
+1. What correlation exists (if any) between the symmetry of a tumor and texture of a tumor?*
+2. Is there a correlation between tumor diagnosis and tumor smoothness?**
+3. Is there a correlation between the area and perimeter of a tumor in regards to tumor diagnosis?*
+4. Is there a correlation between the tumor's fractal dimension and compactness in regards to tumor diagnosis?**
+
+Changes from last milestone:
+*Wording of question was changed to ask about correlation instead or relationship between variables
+**Research Question was changed to be less broad
+
+### Task 1.2
+####Research Question 1
+###### Summarizing
+```{r}
+(cancer_sample %>%
+  group_by(diagnosis) %>%
+  summarise(symmetry_geometric_mean = geometric.mean(symmetry_mean, na.rm = TRUE), symmetry_range = paste("(", min(symmetry_mean, na.rm=T), "-", max(symmetry_mean,na.rm=T), ")"), symmetry_median = median(symmetry_mean, na.rm = TRUE), symmetry_count = n()))
+```
+
+###### Graphing
+```{r}
+
+```
+
+####Research Question 2 (q1)
+###### Summarizing
+```{r}
+(cancer_sample %>%
+  group_by(diagnosis) %>%
+  summarise(overall_smoothness_mean = mean(smoothness_mean, na.rm = TRUE), smoothness_range = paste("(", min(smoothness_mean, na.rm=T), "-", max(smoothness_mean,na.rm=T), ")"), smoothness_median = median(smoothness_mean, na.rm = TRUE), smoothness_count = n()))
+```
+
+###### Graphing
+```{r}
+
+  
+```
+
+####Research Question 3 (2)
+###### Summarizing
+```{r}
+cancer_sample %>%
+  group_by(diagnosis) %>%
+  mutate(relative_tumor_size = case_when(area_mean < 650 ~ "small",
+                                 area_mean < 1000 ~ "medium",
+                                 TRUE ~ "large")) %>%
+  select(ID:fractal_dimension_mean, relative_tumor_size)
+```
+
+###### Graphing
+```{r}
+
+```
+
+####Research Question 4
+###### Summarizing
+```{r}
+(cancer_sample %>%
+  group_by(diagnosis) %>%
+  summarise(total_number_of_tumors = n()))
+```
+
+###### Graphing
+```{r}
+
+```
+
+### Task 1.3
+
+
+# Task 2
+### Task 2.1
+
+
+### Task 2.2
+
+
+### Task 2.3
+
+
+# Additional Comments

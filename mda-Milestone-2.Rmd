@@ -289,3 +289,5 @@ print(extra_table)
 # Additional Comments
 
 For Task 2.3 where we had to use 4-8 functions on out dataset to make it in a format that is useful for answering out two research questions, after performing three functions I got my desired tibble so I assigned that desired tibble as desired_table. To show that I can use more functions, I continued to manipulate the desired_table and assigned that code to extra_table. In extra_table I just wanted to get a count of the small and large tumors only, and added the total area mean as an additional piece of information to compare between the two tumor diagnoses.
+
+For commits and pushes that were made for this milestone, I used a new branch, but when going to merch the two branches on github it was not letting me. It stated I had a conflict error and it did not allow me to correct this conflict. I noticed this started happening in the first milestone when I removed the figure folder and then just reknit it to bring it back. So for this milestone I had to to push the assignment directly to the main branch since I could figure out how to correct that error.

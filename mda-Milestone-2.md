@@ -500,3 +500,12 @@ that code to extra\_table. In extra\_table I just wanted to get a count
 of the small and large tumors only, and added the total area mean as an
 additional piece of information to compare between the two tumor
 diagnoses.
+
+For commits and pushes that were made for this milestone, I used a new
+branch, but when going to merch the two branches on github it was not
+letting me. It stated I had a conflict error and it did not allow me to
+correct this conflict. I noticed this started happening in the first
+milestone when I removed the figure folder and then just reknit it to
+bring it back. So for this milestone I had to to push the assignment
+directly to the main branch since I could figure out how to correct that
+error.

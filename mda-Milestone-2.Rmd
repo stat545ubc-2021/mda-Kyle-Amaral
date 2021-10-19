@@ -25,9 +25,14 @@ Changes from last milestone:
 ####Research Question 1
 ###### Summarizing (option 1)
 ```{r}
-(cancer_sample %>%
+#selects cancer_sample dataset
+cancer_sample %>%
+  
+#groups data based on the diagnosis variable
   group_by(diagnosis) %>%
-  summarise(symmetry_geometric_mean = geometric.mean(symmetry_mean, na.rm = TRUE), symmetry_range = paste("(", min(symmetry_mean, na.rm=T), "-", max(symmetry_mean,na.rm=T), ")"), symmetry_median = median(symmetry_mean, na.rm = TRUE), symmetry_count = n()))
+  
+#provides mean, range, median, and count for symmetry_mean
+  summarise(symmetry_geometric_mean = geometric.mean(symmetry_mean, na.rm = TRUE), symmetry_range = paste("(", min(symmetry_mean, na.rm=T), "-", max(symmetry_mean,na.rm=T), ")"), symmetry_median = median(symmetry_mean, na.rm = TRUE), symmetry_count = n())
 ```
 
 This task would help by allowing for a comparison of the mean values between the two variables in questions. However, only one variable was summarized here since the question only asked for one. Therefore, an additional summarising steo would have to be done to compare these summary statistics between the two
@@ -46,21 +51,26 @@ cancer_sample %>%
   scale_x_continuous(expand = c(0, 0), limits = c(0, max(cancer_sample$symmetry_mean)+0.05)) + 
   scale_y_continuous(expand = c(0, 0), limits = c(0, max(cancer_sample$texture_mean)+5)) +
   
-  #adds a linear trendline
+#adds a linear trend line
   stat_smooth(method = 'lm', aes(colour = "red"), se = FALSE, fullrange=TRUE) +
   
-  #removes legend produced from trendline 
+#removes legend produced from trend line 
   theme(legend.position="none")
 ```
 
-This task helps to see a potential correlation between the two variables in question. The addition of the linear trendline helps to visualize this potential correlation
+This task helps to see a potential correlation between the two variables in question. The addition of the linear trend line helps to visualize this potential correlation
 
 ####Research Question 2 
 ###### Summarizing (option 1)
 ```{r}
-(cancer_sample %>%
+#selects cancer_sample dataset
+cancer_sample %>%
+  
+#groups data based on the diagnosis variable
   group_by(diagnosis) %>%
-  summarise(overall_smoothness_mean = mean(smoothness_mean, na.rm = TRUE), smoothness_range = paste("(", min(smoothness_mean, na.rm=T), "-", max(smoothness_mean,na.rm=T), ")"), smoothness_median = median(smoothness_mean, na.rm = TRUE), smoothness_count = n()))
+   
+#provides mean, range, median, and count for smoothness_mean
+  summarise(overall_smoothness_mean = mean(smoothness_mean, na.rm = TRUE), smoothness_range = paste("(", min(smoothness_mean, na.rm=T), "-", max(smoothness_mean,na.rm=T), ")"), smoothness_median = median(smoothness_mean, na.rm = TRUE), smoothness_count = n())
 ```
 
 This may be able to help answer the research question as it provides summary statistics for this particular variable for the two possible tumor diagnoses. so you can see potential differences in values. A graph would work better in representing this data.
@@ -87,11 +97,18 @@ This graph does help answer the research question as it shows that tumor smoothn
 ####Research Question 3
 ###### Summarizing (option 3) 
 ```{r}
+#selects cancer_sample dataset
 cancer_sample %>%
+  
+#groups data based on the diagnosis variable
   group_by(diagnosis) %>%
+  
+#produces an additional variable with 3 possible categories as the observations based on area_mean
   mutate(relative_tumor_size = case_when(area_mean < 650 ~ "small",
                                  area_mean < 1000 ~ "medium",
                                  TRUE ~ "large")) %>%
+  
+#only provides a tibble with the desired varibles
   select(ID:fractal_dimension_mean, relative_tumor_size)
 ```
 
@@ -122,9 +139,14 @@ This graph did help answer the research questions as can see a clear relationshi
 ####Research Question 4
 ###### Summarizing (option 2)
 ```{r}
-(cancer_sample %>%
+#selects cancer_sample dataset
+cancer_sample %>%
+  
+#groups data based on the diagnosis variable
   group_by(diagnosis) %>%
-  summarise(total_number_of_tumors = n()))
+  
+#provides a counts of the tumors grouped by diagnosis
+  summarise(total_number_of_tumors = n())
 ```
 
 No this did not help answer the research question as it only provided information on the number of tumors in each of the two diagnoses.
@@ -153,11 +175,55 @@ Based in the operations in task 1.2, all of my questions are close to be answere
 # Task 2
 ### Task 2.1
 
+My data is tidy as can be seen by each column representing a single variable, each row represents an observation, and each cell represents a single value. The below table shows 8 variables from my dataset and as you can see, each cell represents 1 piece of data.
+
+```{r}
+#selects cancer_sample dataset
+cancer_sample %>%
+  
+#produces a tibble of the first 8 variables in this dataset
+  select(ID:compactness_mean)
+```
 
 ### Task 2.2
+tidy(Original):
+```{r}
+cancer_sample%>%
+  pivot_longer(cols = c(-ID, -diagnosis), names_to =  c("measurements", "mean"), names_sep = "_")
+```
 
+untidy:
+```{r}
+```
+
+Back to tidy:
+```{r}
+```
+
+My original table was presented in a tidy manner as seen by each cell representing one sole piece of information, each row is an observation, and each column is a variable. Therefore, to make this table untidy, I utilized the pivot_longer function to decrease the number of variables. By doing this it made one of the columns represent more than one variable.
 
 ### Task 2.3
+I have selected the following two research questions to continue with in Milestone 3:
 
+1. Is there a correlation between the area and perimeter of a tumor in regards to tumor diagnosis?
+2. Is there a correlation between the tumor's fractal dimension and tumor diagnosis?
+
+I've chosen these two questions because they show the most interesting information and I can produce graphs that can provide a great visual on potential correlations. 
+
+
+```{r}
+#selects cancer_sample dataset
+cancer_sample %>%
+  
+#selects for the variables of interest
+  select(ID, diagnosis,perimeter_mean,fractal_dimension_mean,area_mean) %>%  
+  
+##produces an additional variable with 3 possible categories as the observations based on area_mean
+  mutate(relative_tumor_size = case_when(area_mean < 650 ~ "small",
+                                 area_mean < 1000 ~ "medium",
+                                 TRUE ~ "large")) %>%
+#arranges the observations based on both diagnosis, then relative_tumor_size
+  arrange(diagnosis, relative_tumor_size)
+```
 
 # Additional Comments

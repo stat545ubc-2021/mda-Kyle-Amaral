@@ -6,7 +6,8 @@ output: html_document
 `````{r}
 #loads needed packages to execute the code in this file and supresses startup messages
 suppressPackageStartupMessages(library(datateachr)) #allows for access to the datasets in this file.
-suppressPackageStartupMessages(library(tidyverse)) # loads packages needed for data visualization (ggplot2), and data manipulation (dplyr) that were used in this file.
+suppressPackageStartupMessages(library(tidyverse)) #loads packages needed for data visualization (ggplot2), and data manipulation (dplyr) that were used in this file.
+suppressPackageStartupMessages(library(psych)) #loads package needed to perform geometric mean in a simple and easy way
 `````
 
 # Task 1
@@ -29,6 +30,8 @@ Changes from last milestone:
   summarise(symmetry_geometric_mean = geometric.mean(symmetry_mean, na.rm = TRUE), symmetry_range = paste("(", min(symmetry_mean, na.rm=T), "-", max(symmetry_mean,na.rm=T), ")"), symmetry_median = median(symmetry_mean, na.rm = TRUE), symmetry_count = n()))
 ```
 
+This task would help by allowing for a comparison of the mean values between the two variables in questions. However, only one variable was summarized here since the question only asked for one. Therefore, an additional summarising steo would have to be done to compare these summary statistics between the two
+
 ###### Graphing (option 7)
 ```{r}
 #selects cancer_sample dataset and produces a graph with symmetry_mean on the x-axis and texture_mean on the y-axis.
@@ -50,6 +53,8 @@ cancer_sample %>%
   theme(legend.position="none")
 ```
 
+This task helps to see a potential correlation between the two variables in question. The addition of the linear trendline helps to visualize this potential correlation
+
 ####Research Question 2 
 ###### Summarizing (option 1)
 ```{r}
@@ -57,6 +62,8 @@ cancer_sample %>%
   group_by(diagnosis) %>%
   summarise(overall_smoothness_mean = mean(smoothness_mean, na.rm = TRUE), smoothness_range = paste("(", min(smoothness_mean, na.rm=T), "-", max(smoothness_mean,na.rm=T), ")"), smoothness_median = median(smoothness_mean, na.rm = TRUE), smoothness_count = n()))
 ```
+
+This may be able to help answer the research question as it provides summary statistics for this particular variable for the two possible tumor diagnoses. so you can see potential differences in values. A graph would work better in representing this data.
 
 ###### Graphing (option 7) 
 ```{r}
@@ -75,6 +82,8 @@ cancer_sample %>%
   scale_y_continuous(expand = c(0, 0), limits = c(0, max(cancer_sample$smoothness_mean)+0.03)) 
 ```
 
+This graph does help answer the research question as it shows that tumor smoothness is quite similar as seen by the partial over lap of the bar graph
+
 ####Research Question 3
 ###### Summarizing (option 3) 
 ```{r}
@@ -85,6 +94,8 @@ cancer_sample %>%
                                  TRUE ~ "large")) %>%
   select(ID:fractal_dimension_mean, relative_tumor_size)
 ```
+
+This did not help answer the research question. It just added an easier way to differentiate between different sized tumors. A better way do to this would to then count each category of relative_tumor_size within each group and compare.
 
 ###### Graphing (option 6)
 ```{r}
@@ -106,6 +117,8 @@ cancer_sample %>%
   stat_smooth(method="lm",formula=y~log(x), colour="black")
 ```
 
+This graph did help answer the research questions as can see a clear relationship between the two variables in question. It can also be seen that there appears to be a separation in diagnoses in relation to the area/perimeter. Benign tumors appear to have a smaller perimeter and area in comparison to malignant tumors.
+
 ####Research Question 4
 ###### Summarizing (option 2)
 ```{r}
@@ -113,6 +126,8 @@ cancer_sample %>%
   group_by(diagnosis) %>%
   summarise(total_number_of_tumors = n()))
 ```
+
+No this did not help answer the research question as it only provided information on the number of tumors in each of the two diagnoses.
 
 ###### Graphing (option 7) density
 ```{r}
@@ -130,8 +145,10 @@ cancer_sample %>%
   ylab(label = "density")
 ```
 
-### Task 1.3
+Yes, this helped answer the research question as it showed lots of overlap between the two diagnoses in regards to the fractal dimensions of the tumors. There appears to be no significant difference in tumor fractal dimension when comparing between the two tumor diagnoses
 
+### Task 1.3
+Based in the operations in task 1.2, all of my questions are close to be answered. They are just missing some statistics to be able to suggest whether the results produced are significant. The aspects that remain unclear are r-values, and P-tests which would allow for the determination of statistically significant results. I believe my research questions are good and can be answered with the data provided. I find the results from question 3 and 4 are the most interesting. The graphs produced so far show a potential correlation in question 2, and the comparison of variables in both of these questions to the tumor diagnoses are interesting.
 
 # Task 2
 ### Task 2.1

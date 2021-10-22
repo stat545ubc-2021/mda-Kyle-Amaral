@@ -1,19 +1,12 @@
 # Mini-Data Analysis Milestone 1 Description
 
 #### What is the project?
-##### Milestone 1
-This is a Mini-Data Analysis for STAT 545A, specifically the first Milestone of 3, called Milestone 1. The purpose of this project is to;
-
-### What is the project?
 #### Milestone 1
 This is a Mini-Data Analysis for STAT 545A, specifically the first Milestone of 3, called Milestone 1. The purpose of this project is:
 - To continue to get familiar with how to use R and Rstudio 
 - To apply functions and tools taught in class to perform our own data manipulation and visualization on preset datasets
 - To practice thinking of research questions that can be answered with the provided data
 - To produce an R markdown file that can be reproduced and that is clear
-
-#### What files are in the Project Folder/Repository
-Within "mda-Kyle-Amaral" you will find 5 files: README.md, .gitignore, mda-Kyle-Amaral.Rproj, mda-Milestone-1.Rmd, and mda-Milestone-1.md
 
 #### Milestone 2
 This is a Mini-Data Analysis for STAT 545A, the second Milestone of 3, called Milestone 2. The purpose of this project is:
@@ -37,7 +30,6 @@ Within "mda-Kyle-Amaral" you will find **9** files: README.md, .gitignore, mda-K
 
 - mda-Milestone-1.md is the file that was rendered from knitting mda-Milestone-1.Rmd to a github-document file.
 
-#### How to run the code in the folder
 - mda-Milestone-1_files/figure-gfm is a folder that contains three files that are necessary to be able to see the three graphs produced from the mda-Milestone-1.Rmd in the mda-Milestone-1.md file
 
 ##### Milestone 2 folder 

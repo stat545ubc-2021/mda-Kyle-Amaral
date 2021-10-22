@@ -153,14 +153,44 @@ t.test(x, y)
 
 ### Exercise 3.1
 
-```{r}
+##### Summary table from Milestone 2
 
+```{r}
+#selects cancer_sample dataset
+(factored_mean_data <- cancer_sample %>%
+  
+#groups data based on the diagnosis variable
+  group_by(diagnosis) %>%
+  
+#produces an additional variable with 3 possible categories as the observations based on area_mean
+  mutate(relative_tumor_size = case_when(area_mean < 650 ~ "small",
+                                 area_mean < 1000 ~ "medium",
+                                 TRUE ~ "large")) %>%
+  
+#only provides a tibble with the desired varibles
+  select(ID,diagnosis,area_mean,relative_tumor_size,radius_mean:perimeter_mean,smoothness_mean:fractal_dimension_mean))
+
+```
+
+##### Produce a .csv file
+
+```{r}
+#writes the tibble 'factored_mean_data' intro a .csv file in the folder named 'output'
+write_csv(factored_mean_data, here::here("~/Desktop/STAT_545/STAT_545A/mda-Kyle-Amaral/output", "fractored_mean_data.csv"))
 ```
 
 ### Exercise 3.2
 
+The model object from Exercise 2 is named 'trendline'
+
 ```{r}
 
+saveRDS(trendline, here::here("~/Desktop/STAT_545/STAT_545A/mda-Kyle-Amaral/output", "trendline.RDS"))
+
+
+(readRDS("~/Desktop/STAT_545/STAT_545A/mda-Kyle-Amaral/output/trendline.RDS"))
 ```
 
 # Additional Comments
+
+My personal branch still doesn't work as it doesn't allow for pull requests to be made between the personal branch and main branch. I had to complete this whole Milestone on the main branch due to this issue. I continue to get an error and its not related to doing pull and pushes from Rstudio because both branches are up to date when I do so. 

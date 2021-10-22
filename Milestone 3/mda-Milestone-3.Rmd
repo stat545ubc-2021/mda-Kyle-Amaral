@@ -1,0 +1,60 @@
+---
+title: "mda-Milestone-3"
+output: github_document
+---
+
+`````{r}
+#loads needed packages to execute the code in this file and supresses startup messages
+suppressPackageStartupMessages(library(datateachr)) #allows for access to the datasets in this file.
+suppressPackageStartupMessages(library(tidyverse)) #loads packages needed for data visualization (ggplot2), and data manipulation (dplyr) that were used in this file.
+```
+
+# Exercise 1
+
+#### Task Number: 1
+
+```{r}
+
+```
+
+#### Task Number: 2
+
+```{r}
+
+```
+
+# Exercise 2
+
+### Exercise 2.0
+
+Research Questions:
+1.
+2.
+
+### Exercise 2.1
+
+```{r}
+
+```
+
+### Exercise 2.2
+
+```{r}
+
+```
+
+# Exercise 3
+
+### Exercise 3.1
+
+```{r}
+
+```
+
+### Exercise 3.2
+
+```{r}
+
+```
+
+# Additional Comments

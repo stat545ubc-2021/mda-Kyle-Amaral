@@ -3,11 +3,11 @@ title: "mda-Milestone-3"
 output: github_document
 ---
 
-`````{r}
+```{r}
 #loads needed packages to execute the code in this file and supresses startup messages
 suppressPackageStartupMessages(library(datateachr)) #allows for access to the datasets in this file.
 suppressPackageStartupMessages(library(tidyverse)) #loads packages needed for data visualization (ggplot2), and data manipulation (dplyr) that were used in this file.
-suppressPackageStartupMessages(library(broom))
+suppressPackageStartupMessages(library(broom)) #loads package needed for modelling
 ```
 
 # Research Questions:

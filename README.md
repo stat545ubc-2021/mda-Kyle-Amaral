@@ -1,6 +1,6 @@
 # Mini-Data Analysis Milestone 1 Description
 
-#### What is the project?
+### What is the project?
 #### Milestone 1
 This is a Mini-Data Analysis for STAT 545A, specifically the first Milestone of 3, called Milestone 1. The purpose of this project is:
 - To continue to get familiar with how to use R and Rstudio 

@@ -20,46 +20,48 @@ suppressPackageStartupMessages(library(broom))
 Had to make a new graph since none of my graphs in Milestone 2 had 3 factors. Below is the code to produce this original graph.
 
 ```{r}
-
+#selects cancer_sample dataset
 cancer_sample %>%
   
-  
+#produces an additional variable with 5 possible categories as the observations based on area_mean  
   mutate(relative_tumor_size = case_when(area_mean < 200 ~ "very low",                                    
                                  area_mean < 650 ~ "small",
                                  area_mean < 1000 ~ "medium",
                                  area_mean < 1500 ~ "large",
                                  TRUE ~ " very large")) %>%
   
-  
+#produces a graph with relative_tumor_size on the x-axis and area_mean on the y-axis.  
   ggplot(aes(x = relative_tumor_size, y = area_mean)) +
   
-  
+#produces a boxplot and makes the width of the boxplot smaller.  
   geom_boxplot(width = 0.5) +
   
-  
+#adds the individuals data points, makes the points' transparency lower and smaller, and shifts the points horizontally while keeping the vertical position the same. Also colours the point based on tumor diagnosis.
   geom_jitter(aes(colour = diagnosis), width = 0.2, size = 0.2, alpha = 0.3)
 ```
 
 #### Task Number: 1
 
 ```{r}
-
+#selects cancer_sample dataset
 cancer_sample %>%
   
-  
+#produces an additional variable with 5 possible categories as the observations based on area_mean  
   mutate(relative_tumor_size = factor(case_when(area_mean < 200 ~ "very small",                                                                                        area_mean < 650 ~ "small",
                                  area_mean < 1000 ~ "medium",
                                  area_mean < 1500 ~ "large",
                                  TRUE ~ "very large"),
+                                 
+#reorders the factors
                                  levels = c("very small", "small", "medium",  "large", "very large"))) %>%
   
-  
+#produces a graph with relative_tumor_size on the x-axis and area_mean on the y-axis.    
   ggplot(aes(x = relative_tumor_size, y = area_mean)) +
   
-  
+#produces a boxplot and makes the width of the boxplot smaller.  
   geom_boxplot(width = 0.5) +
   
-  
+#adds the individuals data points, makes the points' transparency lower and smaller, and shifts the points horizontally while keeping the vertical position the same. Also colours the point based on tumor diagnosis.  
   geom_jitter(aes(colour = diagnosis), width = 0.2, size = 0.2, alpha = 0.3)
 ```
 
@@ -68,30 +70,30 @@ I chose to do this ordering of the factors because I believe when looking at dif
 #### Task Number: 2
 
 ```{r}
-
+#selects cancer_sample dataset
 cancer_sample %>%
   
-  
+#produces an additional variable with 5 possible categories as the observations based on area_mean  
   mutate(relative_tumor_size = factor(case_when(area_mean < 200 ~ "very small",                                                                                        area_mean < 650 ~ "small",
                                  area_mean < 1000 ~ "medium",
                                  area_mean < 1500 ~ "large",
                                  TRUE ~ "very large"),
                                  levels = c("very small", "small", "medium",  "large", "very large"))) %>%
   
-  
+#groups 'very small' and 'small' into one factor called 'other'
   mutate(relative_tumor_size = fct_collapse(relative_tumor_size, 
               medium = "medium", large = "large", very_large = "very large", other = c("very small", "small"))) %>%
 
-  
+#produces a graph with relative_tumor_size on the x-axis and area_mean on the y-axis.  
   ggplot(aes(x = relative_tumor_size, y = area_mean)) +
   
-  
+#produces a boxplot and makes the width of the boxplot smaller.    
   geom_boxplot(width = 0.5) + 
   
-  
+#adds the individuals data points, makes the points' transparency lower and smaller, and shifts the points horizontally while keeping the vertical position the same. Also colours the point based on tumor diagnosis.    
   geom_jitter(aes(colour = diagnosis), width = 0.2, size = 0.2, alpha = 0.3) +
   
-  
+#renames the factor labels so that the 'verylarge' factor name is changed to 'very large'  
   scale_x_discrete(labels = c("other", "medium", "large", "very large"))
 ```
 
@@ -106,11 +108,15 @@ Variable of interest: area_mean
 
 ### Exercise 2.1
 ```{r}
+#creates a linear model
 trendline <- lm(perimeter_mean ~ area_mean, cancer_sample)
+
+#provides information on the output lm() creates
 unclassed <- unclass(trendline)
 print(unclassed)
 ```
 
+I used the lm() function to create a linear model, then used the unclass() funciton to look at all the information lm() created. The below code chunk produces a scatterplot between area_mean and perimeter_mean, with a linear regression line.
 
 ```{r}
 #selects cancer_sample dataset and produces a graph with area_mean on the x-axis and perimeter_mean on the y-axis.
@@ -126,18 +132,18 @@ cancer_sample %>%
   scale_y_continuous(expand = c(0, 0), limits = c(0, max(cancer_sample$perimeter_mean)+10)) +
 
 #adds a linear trend line
-  stat_smooth(method = 'lm', aes(colour = "red"), se = FALSE, fullrange=TRUE) +
-
-#removes legend produced from trend line 
-  theme(legend.position="none")
+  stat_smooth(method = 'lm', colour = "grey", se = FALSE, fullrange=TRUE) 
 ```
 
 ### Exercise 2.2
 
-```{r}
+I decided to look at the P value so I used the tidy() function which provides the P value in column 5 of the generated tibble. I was second guessing myself because I've never seen a P value of 0, so to double check this I ran a Welch Two Sample t-test using the t.test() function. The results from t test are seen in the R console generated below and it shows that the p value is really small so tidy provided it as 0, meaning the results are very statistically significant.
 
+```{r}
+#provides data such as estimate, std.error, a statistic, and p.value
 tidy(trendline)
 
+#produces a Welch Two Sample t-test, provides statistical data including P value
 x <- cancer_sample$area_mean
 y <- cancer_sample$perimeter_mean
 t.test(x, y)

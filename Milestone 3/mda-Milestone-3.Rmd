@@ -9,7 +9,25 @@ suppressPackageStartupMessages(library(datateachr)) #allows for access to the da
 suppressPackageStartupMessages(library(tidyverse)) #loads packages needed for data visualization (ggplot2), and data manipulation (dplyr) that were used in this file.
 ```
 
+# Research Questions:
+
+1. Is there a correlation between the area and perimeter of a tumor in regards to tumor diagnosis?
+2. Is there a correlation between the tumor's fractal dimension and tumor diagnosis?
+
 # Exercise 1
+
+Had to make a new graph since none of my graphs in Milestone 2 had 3 factors. Below is the code to produce this original graph.
+
+```{r}
+cancer_sample %>%
+  mutate(relative_tumor_size = case_when(area_mean < 200 ~ "very low",                                    area_mean < 650 ~ "small",
+                                 area_mean < 1000 ~ "medium",
+                                 area_mean < 1500 ~ "large",
+                                 TRUE ~ " very large")) %>%
+  ggplot(aes(x = relative_tumor_size, y = area_mean)) +
+  geom_boxplot(width = 0.5) +
+  geom_jitter(aes(colour = diagnosis), width = 0.2, size = 0.2, alpha = 0.3)
+```
 
 #### Task Number: 1
 

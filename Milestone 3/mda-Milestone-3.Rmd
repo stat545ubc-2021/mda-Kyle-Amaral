@@ -19,13 +19,23 @@ suppressPackageStartupMessages(library(tidyverse)) #loads packages needed for da
 Had to make a new graph since none of my graphs in Milestone 2 had 3 factors. Below is the code to produce this original graph.
 
 ```{r}
+
 cancer_sample %>%
-  mutate(relative_tumor_size = case_when(area_mean < 200 ~ "very low",                                    area_mean < 650 ~ "small",
+  
+  
+  mutate(relative_tumor_size = case_when(area_mean < 200 ~ "very low",                                    
+                                 area_mean < 650 ~ "small",
                                  area_mean < 1000 ~ "medium",
                                  area_mean < 1500 ~ "large",
                                  TRUE ~ " very large")) %>%
+  
+  
   ggplot(aes(x = relative_tumor_size, y = area_mean)) +
+  
+  
   geom_boxplot(width = 0.5) +
+  
+  
   geom_jitter(aes(colour = diagnosis), width = 0.2, size = 0.2, alpha = 0.3)
 ```
 
@@ -33,12 +43,50 @@ cancer_sample %>%
 
 ```{r}
 
+cancer_sample %>%
+  
+  
+  mutate(relative_tumor_size = factor(case_when(area_mean < 200 ~ "very small",                                                                                        area_mean < 650 ~ "small",
+                                 area_mean < 1000 ~ "medium",
+                                 area_mean < 1500 ~ "large",
+                                 TRUE ~ "very large"),
+                                 levels = c("very small", "small", "medium",  "large", "very large"))) %>%
+  
+  
+  ggplot(aes(x = relative_tumor_size, y = area_mean)) +
+  
+  
+  geom_boxplot(width = 0.5) +
+  
+  
+  geom_jitter(aes(colour = diagnosis), width = 0.2, size = 0.2, alpha = 0.3)
 ```
 
 #### Task Number: 2
 
 ```{r}
 
+cancer_sample %>%
+  
+  
+  mutate(relative_tumor_size = factor(case_when(area_mean < 200 ~ "very small",                                                                                        area_mean < 650 ~ "small",
+                                 area_mean < 1000 ~ "medium",
+                                 area_mean < 1500 ~ "large",
+                                 TRUE ~ "very large"),
+                                 levels = c("very small", "small", "medium",  "large", "very large"))) %>%
+  
+  
+  mutate(relative_tumor_size = fct_collapse(relative_tumor_size, 
+              medium = "medium", large = "large", verylarge = "very large", other = c("very small", "small"))) %>%
+
+  
+  ggplot(aes(x = relative_tumor_size, y = area_mean)) +
+  
+  
+  geom_boxplot(width = 0.5) +
+  
+  
+  geom_jitter(aes(colour = diagnosis), width = 0.2, size = 0.2, alpha = 0.3)
 ```
 
 # Exercise 2

@@ -63,6 +63,8 @@ cancer_sample %>%
   geom_jitter(aes(colour = diagnosis), width = 0.2, size = 0.2, alpha = 0.3)
 ```
 
+I chose to do this ordering of the factors because I believe when looking at difference in sizes, it seems to be more easy on the eye when you go from the smallest value to the largest. It is also easier to view and see trends because its usually how this kind of measurements are ordered. For example, if I were to remove the axis labels and factor names, I would automatically think that in the original graph, the box plots went from smallest to largest, which it did not. 
+
 #### Task Number: 2
 
 ```{r}
@@ -92,6 +94,8 @@ cancer_sample %>%
   
   scale_x_discrete(labels = c("other", "medium", "large", "very large"))
 ```
+
+I chose to do this grouping because I was mostly interested in the medium to largest factors, but did want to remove any available data. By doing this group it also emphasizes how there are very little numbers of benign tumors, and they dont go past the medium factor. This provides information on tumor diagnosis and area_mean. 
 
 # Exercise 2
 

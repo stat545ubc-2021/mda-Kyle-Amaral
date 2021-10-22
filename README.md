@@ -22,7 +22,7 @@ This is a Mini-Data Analysis for STAT 545A, the final Milestone of 3, called Mil
 - To read and write data as separate files
 
 ### What files are in the Project Folder/Repository
-Within "mda-Kyle-Amaral" you will find **18** files: README.md, .gitignore, mda-Kyle-Amaral.Rproj, README.md, mda-Milestone-1.Rmd, mda-Milestone-1.md, mda-Milestone-1_files/figure-gfm, README.md, mda-Milestone-2.Rmd, mda-Milestone-2.md, mda-Milestone-2_files/figure-gfm, README.md, mda-Milestone-3.Rmd, mda-Milestone-3.md, and mda-Milestone-3_files/figure-gfm, README.md, factored_mean_data.csv, and trendline.RDS
+Within "mda-Kyle-Amaral" you will find **18** files: README.md, .gitignore, mda-Kyle-Amaral.Rproj, README.md, mda-Milestone-1.Rmd, mda-Milestone-1.md, mda-Milestone-1_files/figure-gfm, README.md, mda-Milestone-2.Rmd, mda-Milestone-2.md, mda-Milestone-2_files/figure-gfm, README.md, mda-Milestone-3.Rmd, mda-Milestone-3.md, mda-Milestone-3_files/figure-gfm, README.md, factored_mean_data.csv, and trendline.RDS
 
 #### Repository 
 - README.md contains a thorough description on the content that can be found in this repository. The README.md file can also be used to produce a PDF or html

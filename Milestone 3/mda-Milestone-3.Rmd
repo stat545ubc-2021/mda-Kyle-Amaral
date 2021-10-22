@@ -77,16 +77,19 @@ cancer_sample %>%
   
   
   mutate(relative_tumor_size = fct_collapse(relative_tumor_size, 
-              medium = "medium", large = "large", verylarge = "very large", other = c("very small", "small"))) %>%
+              medium = "medium", large = "large", very_large = "very large", other = c("very small", "small"))) %>%
 
   
   ggplot(aes(x = relative_tumor_size, y = area_mean)) +
   
   
-  geom_boxplot(width = 0.5) +
+  geom_boxplot(width = 0.5) + 
   
   
-  geom_jitter(aes(colour = diagnosis), width = 0.2, size = 0.2, alpha = 0.3)
+  geom_jitter(aes(colour = diagnosis), width = 0.2, size = 0.2, alpha = 0.3) +
+  
+  
+  scale_x_discrete(labels = c("other", "medium", "large", "very large"))
 ```
 
 # Exercise 2

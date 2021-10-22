@@ -1,4 +1,4 @@
-# Mini-Data Analysis Milestone 1 Description
+# Mini-Data Analysis Description
 
 ### What is the project?
 #### Milestone 1

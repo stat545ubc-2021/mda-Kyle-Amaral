@@ -15,8 +15,14 @@ This is a Mini-Data Analysis for STAT 545A, the second Milestone of 3, called Mi
 - To practice using R to answer research questions
 - To produce an R markdown file that can be reproduced and that is clear
 
+#### Milestone 3
+This is a Mini-Data Analysis for STAT 545A, the final Milestone of 3, called Miletstone 3. The purpose of this project is:
+- To practice manipulating special data types, such as factors
+- To fit model objects to the data and extracting their results
+- To read and write data as separate files
+
 ### What files are in the Project Folder/Repository
-Within "mda-Kyle-Amaral" you will find **9** files: README.md, .gitignore, mda-Kyle-Amaral.Rproj, mda-Milestone-1.Rmd, mda-Milestone-1.md, mda-Milestone-1_files/figure-gfm, mda-Milestone-2.Rmd, mda-Milestone-2.md, and mda-Milestone-2_files/figure-gfm
+Within "mda-Kyle-Amaral" you will find **14** files: README.md, .gitignore, mda-Kyle-Amaral.Rproj, mda-Milestone-1.Rmd, mda-Milestone-1.md, mda-Milestone-1_files/figure-gfm, mda-Milestone-2.Rmd, mda-Milestone-2.md, and mda-Milestone-2_files/figure-gfm, mda-Milestone-3.Rmd, mda-Milestone-3.md, and mda-Milestone-3_files/figure-gfm, factored_mean_data.csv, and trendline.RDS
 
 #### Repository 
 - README.md contains a thorough description on the content that can be found in this repository. The README.md file can also be used to produce a PDF or html
@@ -38,6 +44,18 @@ Within "mda-Kyle-Amaral" you will find **9** files: README.md, .gitignore, mda-K
 - mda-Milestone-2.md is the file that was rendered from knitting mda-Milestone-2.Rmd to a github-document file.
 
 - mda-Milestone-2_files/figure-gfm is a folder that contains four files that are necessary to be able to see the four graphs produced from the mda-Milestone-2.Rmd in the mda-Milestone-2.md file
+
+##### Milestone 3 folder
+- mda-Milestone-3.Rmd is an R markdown file that was created to contain answers to Mini-Data Analysis Milestone 3. This file also includes code chunks that were used to perform some data manipulation, data visualization, data analysis, and reading and writing data as new files.
+
+- mda-Milestone-3.md is the file that was rendered from knitting mda-Milestone-3.Rmd to a github-document file.
+
+- mda-Milestone-3_files/figure-gfm is a folder that contains four files that are necessary to be able to see the four graphs produced from the mda-Milestone-3.Rmd in the mda-Milestone-3.md file
+
+##### output folder
+- factored_mean_data.csv is a comma separated values file which is a plain text file that contains the data that was stored in the factored_mean_data variable from Milestone 3
+
+- trendline.RDS is an R data single file that stores a single R object. In this case it is the trendline object found in Milestone 3
 
 ### How to run the code in the folder
 Open Rstudio and start a new project. Link this new project to the mda-Kyle-Amaral repository on github by copying the url that can be found in the repository on github to the Rstudio window that opens. Pull the files and run code by highlighting the desired code and clicking run. 

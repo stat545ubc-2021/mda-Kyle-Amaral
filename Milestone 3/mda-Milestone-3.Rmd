@@ -184,10 +184,10 @@ write_csv(factored_mean_data, here::here("~/Desktop/STAT_545/STAT_545A/mda-Kyle-
 The model object from Exercise 2 is named 'trendline'
 
 ```{r}
-
+#writes the object to an R binary file (RDS file for this case)
 saveRDS(trendline, here::here("~/Desktop/STAT_545/STAT_545A/mda-Kyle-Amaral/output", "trendline.RDS"))
 
-
+#loads this RDS file
 (readRDS("~/Desktop/STAT_545/STAT_545A/mda-Kyle-Amaral/output/trendline.RDS"))
 ```
 

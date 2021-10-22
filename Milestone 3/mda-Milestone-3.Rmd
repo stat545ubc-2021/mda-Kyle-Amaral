@@ -7,6 +7,7 @@ output: github_document
 #loads needed packages to execute the code in this file and supresses startup messages
 suppressPackageStartupMessages(library(datateachr)) #allows for access to the datasets in this file.
 suppressPackageStartupMessages(library(tidyverse)) #loads packages needed for data visualization (ggplot2), and data manipulation (dplyr) that were used in this file.
+suppressPackageStartupMessages(library(broom))
 ```
 
 # Research Questions:
@@ -96,20 +97,46 @@ cancer_sample %>%
 
 ### Exercise 2.0
 
-Research Questions:
-1.
-2.
+Research Question: Is there a correlation between the area and perimeter of a tumor in regards to tumor diagnosis?
+Variable of interest: area_mean
 
 ### Exercise 2.1
+```{r}
+trendline <- lm(perimeter_mean ~ area_mean, cancer_sample)
+unclassed <- unclass(trendline)
+print(unclassed)
+```
+
 
 ```{r}
+#selects cancer_sample dataset and produces a graph with area_mean on the x-axis and perimeter_mean on the y-axis.
+cancer_sample %>%
+  ggplot(aes(x = area_mean, y = perimeter_mean)) +
+  
+#plots the points for the above two variables with an alpha of 0.2 to allow for visualization of overlapping data points. A colour aesthetic was also used to show the diagnosis of each tumor.
+  geom_point(aes(colour = diagnosis), alpha = 0.2) +
+  
+#sets the origin of the graph to 0,0 and ensures all points are included in the plot.
+  expand_limits(x = 0, y = 0) +
+  scale_x_continuous(expand = c(0, 0), limits = c(0, max(cancer_sample$area_mean)+100)) + 
+  scale_y_continuous(expand = c(0, 0), limits = c(0, max(cancer_sample$perimeter_mean)+10)) +
 
+#adds a linear trend line
+  stat_smooth(method = 'lm', aes(colour = "red"), se = FALSE, fullrange=TRUE) +
+
+#removes legend produced from trend line 
+  theme(legend.position="none")
 ```
 
 ### Exercise 2.2
 
 ```{r}
 
+tidy(trendline)
+
+x <- cancer_sample$area_mean
+y <- cancer_sample$perimeter_mean
+t.test(x, y)
 ```
 
 # Exercise 3
